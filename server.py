@@ -30,6 +30,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         print('Connected by', addr)
         while True:
             data = conn.recv(1024)
+            print("New Data: " + data.decode())
             if not data:
                 break
+            elif data.decode() == '#':
+                sortTest = sort(['3D', 'X2', '9H', "2C"])
+                fix = ''
+                for sortee in sortTest:
+                    fix += sortee + '\n'
+                data = fix.encode()
             conn.sendall(data)
